@@ -61,8 +61,8 @@ def lstm_predictor(input: dict) -> dict:
     except Exception as e:
         return {"status": "error", "error_message": str(e)}
 
-lstm_predictor_agent = Agent(
-    name="lstm_predictor",
+lstm_agent = Agent(
+    name="lstm_agent",
     model="gemini-2.0-flash",
     description="Predicts future stock prices using an LSTM model.",
     instruction="""

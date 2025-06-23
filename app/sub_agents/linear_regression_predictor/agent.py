@@ -38,8 +38,8 @@ def linear_regression(input: dict) -> dict:
     except Exception as e:
         return {"status": "error", "error_message": str(e)}
 
-linear_regression_predictor = Agent(
-    name="linear_regression_predictor",
+linear_regression_agent = Agent(
+    name="linear_regression_agent",
     model="gemini-2.0-flash",
     description="Predicts a future stock price using linear regression on all historical data.",
     instruction="""

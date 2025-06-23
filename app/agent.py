@@ -1,12 +1,12 @@
 from google.adk.agents import Agent
 from google.adk.tools.agent_tool import AgentTool
 
+from .tools.tools import get_current_time
 from .sub_agents.stock_analyst.agent import stock_analyst
 from .sub_agents.news_analyst.agent import news_analyst
-from .tools.tools import get_current_time
 
-from .sub_agents.linear_regression_predictor.agent import linear_regression_predictor
-from .sub_agents.lstm_predictor.agent import lstm_predictor_agent
+from .sub_agents.linear_regression_predictor.agent import linear_regression_agent
+from .sub_agents.lstm_predictor.agent import lstm_agent
 
 root_agent = Agent(
     name="manager",
@@ -29,7 +29,7 @@ root_agent = Agent(
         get_current_time,
         AgentTool(stock_analyst),
         AgentTool(news_analyst),
-        AgentTool(linear_regression_predictor),
-        AgentTool(lstm_predictor_agent),
+        AgentTool(linear_regression_agent),
+        AgentTool(lstm_agent),
     ],
 )
