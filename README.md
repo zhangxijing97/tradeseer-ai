@@ -1,6 +1,6 @@
 # tradeseer-ai
 
-![TradeSeer‑AI Logo](tradeseer-ai/tradeseer-ai.png)
+![TradeSeer‑AI Logo](tradeseer-ai.png)
 
 **TradeSeer‑AI** is a multi‑tool AI-powered agent designed for financial insights:
 - 🔍 Real-time stock price lookup  
