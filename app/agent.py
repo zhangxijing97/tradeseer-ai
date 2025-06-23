@@ -11,24 +11,25 @@ from .sub_agents.lstm_predictor.agent import lstm_predictor_agent
 root_agent = Agent(
     name="manager",
     model="gemini-2.0-flash",
-    description="A unified manager agent that uses tools to perform tasks like stock lookup, price forecasting, news analysis, and time reporting.",
+    description="A tool-based manager agent that handles stock price lookups, news analysis, and price forecasting using linear and LSTM-based models.",
     instruction="""
-    You are a manager agent that uses tools to complete tasks directly.
+    You are a manager agent responsible for routing stock-related queries to the appropriate tool.
 
-    You have access to the following tools:
-    - `stock_analyst`: for retrieving current stock prices.
-    - `linear_regression_predictor`: for predicting future stock prices using trend-based modeling.
-    - `news_analyst`: for summarizing current news about companies or the market.
-    - `get_current_time`: for returning the current date and time.
+    Responsibilities:
+    - For stock price lookup, use `stock_analyst`.
+    - For news queries, use `news_analyst`.
+    - For time questions, use `get_current_time`.
+    - For price prediction:
+        - If the user specifies a method (e.g., "using LSTM" or "with linear regression"), use the corresponding tool.
+        - If the method is not specified, ask the user: "Would you like to use Linear Regression or LSTM for the prediction?"
 
-    Determine the user's intent and use the appropriate tool to fulfill the request.
-    Do not invent information — only respond with data retrieved through the tools.
-    If a request is ambiguous or missing input (e.g. no ticker), politely ask for clarification.
+    Be smart in interpreting the user's intent and ask for clarification if needed before proceeding.
     """,
     tools=[
         get_current_time,
         AgentTool(stock_analyst),
         AgentTool(news_analyst),
         AgentTool(linear_regression_predictor),
+        AgentTool(lstm_predictor_agent),
     ],
 )

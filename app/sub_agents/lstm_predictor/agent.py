@@ -15,37 +15,40 @@ def lstm_predictor(input: dict) -> dict:
             return {"status": "error", "error_message": "Missing 'ticker'."}
 
         stock = yf.Ticker(ticker)
-        hist = stock.history(period="6mo")
+        hist = stock.history(period="max")
 
         if hist.empty or "Close" not in hist:
             return {"status": "error", "error_message": f"No historical data for {ticker}"}
 
         prices = hist["Close"].values.reshape(-1, 1)
         if len(prices) < 60:
-            return {"status": "error", "error_message": "Not enough data for LSTM (need 60+ days)."}
+            return {"status": "error", "error_message": "Not enough data for LSTM (need at least 60 days)."}
 
+        # Normalize price data
         scaler = MinMaxScaler()
         scaled_prices = scaler.fit_transform(prices)
 
+        # Prepare training data (sliding window of 60 days)
         X, y = [], []
         for i in range(60, len(scaled_prices)):
-            X.append(scaled_prices[i-60:i])
+            X.append(scaled_prices[i - 60:i])
             y.append(scaled_prices[i])
         X, y = np.array(X), np.array(y)
 
+        # Build and train the LSTM model
         model = Sequential()
         model.add(LSTM(50, return_sequences=False, input_shape=(X.shape[1], 1)))
         model.add(Dense(1))
         model.compile(optimizer='adam', loss='mean_squared_error')
         model.fit(X, y, epochs=10, batch_size=16, verbose=0)
 
+        # Predict forward for N days
         last_60 = scaled_prices[-60:].reshape(1, 60, 1)
-        future_price_scaled = None
         for _ in range(days_ahead):
-            future_price_scaled = model.predict(last_60, verbose=0)
-            last_60 = np.append(last_60[:, 1:, :], [[future_price_scaled[0]]], axis=1)
+            predicted_scaled = model.predict(last_60, verbose=0)
+            last_60 = np.append(last_60[:, 1:, :], [[predicted_scaled[0]]], axis=1)
 
-        predicted_price = scaler.inverse_transform(future_price_scaled)[0][0]
+        predicted_price = scaler.inverse_transform(predicted_scaled)[0][0]
 
         return {
             "status": "success",
