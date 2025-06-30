@@ -1,18 +1,19 @@
 # tradeseer-ai
 
-<p align="center">
-  <img src="tradeseer-ai.png" alt="TradeSeer‑AI Logo" width="200"/>
-</p>
-
-**TradeSeer‑AI** is a multi‑tool AI-powered agent designed for financial insights.
+<img src="tradeseer-ai.png" alt="TradeSeer‑AI Logo" width="400" align="left"/>
 
 As an investor and technologist, I constantly found myself switching between multiple platforms—Yahoo Finance for prices, Google News for headlines, and Python scripts for forecasts. I wanted a unified, conversational experience where I could simply ask, "What’s the forecast for AAPL using LSTM?" and get a smart, context-aware response. That’s where the idea for TradeSeer-AI was born: an intelligent multi-agent system that feels like a team of financial analysts available 24/7.
 
+**TradeSeer‑AI** is a multi‑tool AI-powered agent designed for financial insights:
+- 🔍 Real-time stock price lookup
+- 📰 Market news summaries
+- 📈 Price forecasting via diverse models: Linear Regression, LSTM, GRU, Prophet
+
 ## 🚀 Features
 
-- **Stock Analyst** — fetches current stock prices using Yahoo Finance  
-- **News Analyst** — retrieves and summarizes recent news  
-- **Time Tool** — provides the current date & time  
+- **Stock Analyst** — fetches current stock prices using Yahoo Finance
+- **News Analyst** — retrieves and summarizes recent news
+- **Time Tool** — provides the current date & time
 - **Forecast Tools** — predict future prices using:
   - Linear Regression (trend-based)
   - LSTM (sequence-based neural net)
@@ -27,7 +28,7 @@ git clone git@github.com:zhangxijing97/tradeseer-ai.git
 cd stock-info-agent
 
 # Create a virtual environment (optional but recommended)
-python -m venv .venv 
+python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
 # Install dependencies
