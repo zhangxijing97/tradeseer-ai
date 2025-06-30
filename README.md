@@ -1,8 +1,8 @@
 # tradeseer-ai
 
-<p align="center">
-  <img src="tradeseer-ai.png" alt="TradeSeer‑AI Logo" width="400" align="left"/>
-</p>
+<img src="tradeseer-ai.png" alt="TradeSeer‑AI Logo" width="400" align="left"/>
+
+<br clear="left"/>
 
 As an investor and technologist, I constantly found myself switching between multiple platforms—Yahoo Finance for prices, Google News for headlines, and Python scripts for forecasts. I wanted a unified, conversational experience where I could simply ask, "What’s the forecast for AAPL using LSTM?" and get a smart, context-aware response. That’s where the idea for TradeSeer-AI was born: an intelligent multi-agent system that feels like a team of financial analysts available 24/7.
 
