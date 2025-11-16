@@ -56,7 +56,13 @@ echo "GOOGLE_API_KEY=your_google_api_key_here" >> .env
 
 ## ⚙️ Usage
 
-Run the ADK manager server or developer UI. In the console, type natural prompts:
+After setup, the final step is to run the ADK web interface.
+
+```bash
+adk web
+```
+
+Once the interface loads in your browser, you can type natural prompts in the console:
 
 - **Stock price**  
   ```
