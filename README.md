@@ -54,15 +54,35 @@ echo "GOOGLE_GENAI_USE_VERTEXAI=0" > .env
 echo "GOOGLE_API_KEY=your_google_api_key_here" >> .env
 ```
 
+## 🏁 How to Run
+
+After setup and adding your API key, you can run the agent in two primary ways:
+
+### Option 1: Interactive Web Console (Recommended for Testing)
+
+This command starts the ADK developer UI, providing an interactive web-based chat console to test your agent immediately.
+
+1.  Run the following command in your terminal:
+    ```bash
+    adk web
+    ```
+2.  This will automatically open the interface in your default browser (usually at `http://localhost:8080`).
+3.  Once loaded, you can start typing prompts.
+
+### Option 2: Headless API Server (For Production/Integration)
+
+This command runs the agent manager as a "headless" backend service. This is ideal for production or for integrating with a custom frontend application.
+
+1.  Run the following command:
+    ```bash
+    adk serve
+    ```
+2.  This starts the server (by default at `http://localhost:8080`) without launching a browser.
+3.  You can now send API requests to this endpoint (e.g., using `curl`, Postman, or your custom app) to interact with the agent.
+
 ## ⚙️ Usage
 
-After setup, the final step is to run the ADK web interface.
-
-```bash
-adk web
-```
-
-Once the interface loads in your browser, you can type natural prompts in the console:
+Run the ADK manager server or developer UI. In the console, type natural prompts:
 
 - **Stock price**  
   ```
